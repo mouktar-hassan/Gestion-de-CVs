@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:p="http://primefaces.org/ui">
+
+
+<h:body>
+	<ui:composition template="/template/mylayoutConnected.xhtml">
+		<ui:define name="title">CV Application</ui:define>
+		<ui:define name="content">
+
+			<c:choose>
+				<c:when test="${not empty personSession}">
+					<div>
+						<h:form>
+							<p:panel id="panel" header="Modifier profil">
+								<p:panelGrid styleClass="companyHeaderGrid" columns="3" cellpadding="5">
+									<c:set var="personValidator"
+										value="#{personController.personValidator}" />
+
+									<h:outputText for="name" value="Nom:" />
+									<p:inputText id="name"
+										value="#{personController.personConnected.name}"
+										label="name: " requiredMessage="Nom est Obligatoire"
+										required="true" />
+									<p:message for="name" />
+
+
+									<h:outputText for="firstname" value="Prénom:" />
+									<p:inputText id="firstname"
+										value="#{personController.personConnected.firstname}"
+										label="firstname" requiredMessage="Le Prénom est Obligatoire"
+										required="true" />
+									<p:message for="firstname" />
+
+
+									<h:outputText value="Date de naissance:" />
+									<p:calendar id="birthday"
+										value="#{personController.personConnected.birthday}"
+										navigator="true" pattern="dd-MM-yyyy" mask="true" />
+									<p:message for="birthday" />
+
+									<h:outputText value="L'adresse e-mail:" />
+									<p:inputText id="email"
+										value="#{personController.personConnected.email}"
+										label="email"
+										requiredMessage="L'adresse e-mail est Obligatoire"
+										required="true" />
+									<p:message for="email" />
+
+									<h:outputText value="Site Web:" />
+									<p:inputText id="webSite"
+										value="#{personController.personConnected.website}"
+										label="webSite" requiredMessage="Le Site Web est Obligatoire"
+										required="true" />
+									<p:message for="webSite" />
+
+
+									<p:commandButton action="#{personController.modifyProfil()}"
+										value="Modifier" ajax="false" icon="ui-icon-check"
+										validateClient="true" update="msgs" />
+								</p:panelGrid>
+							</p:panel>
+						</h:form>
+					</div>
+				</c:when>
+				<c:otherwise>
+					<!-- 				<c:redirect url="/consult.xhtml"/> -->
+					<f:event type="preRenderView" listener="profil" />
+				</c:otherwise>
+			</c:choose>
+
+		</ui:define>
+
+	</ui:composition>
+</h:body>
+</html>
+

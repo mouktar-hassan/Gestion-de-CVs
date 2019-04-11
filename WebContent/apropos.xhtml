@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/template/mylayout.xhtml">
+	<ui:define name="content">
+
+		<style type="text/css">
+.value {
+	font-weight: bold;
+}
+
+.ui-carousel {
+	margin-bottom: 20px;
+}
+</style>
+
+
+		<h:form id="form">
+			<p:carousel numVisible="1" effect="easeInStrong"
+				headerText="A Savoir" style="margin-bottom:0">
+				<p:tab title="Présentation génerale">
+					<h:panelGrid columns="2" cellpadding="10">
+						<h:graphicImage library="img" name="AixMarseilleLogo.png" />
+						<h:outputText
+							value="Nous sommes un petit groupe de 3 étudiants (HASSAN FARAH Moktar, BOUSTANI Sarah et EL GHARNAJI Yasir) passionné par le développement des applications Web. Dans le cadre de la validation de notre Master 2 informatique parcours Ingenieurie logiciel et de données nous avons travaillés sur une application qui se charge la gestion des CV (Ajout, Modification, Rechercher ... etc)." />
+					</h:panelGrid>
+				</p:tab>
+				<p:tab title="Technologies utilisées">
+					<h:panelGrid columns="2" cellpadding="10">
+						<p:graphicImage library="img" name="javaee.png" />
+						<h:outputText
+							value="Ce projet à été développé par les technologies fournis par Java/JEE.  " />
+					</h:panelGrid>
+				</p:tab>
+			</p:carousel>
+		</h:form>
+
+	</ui:define>
+	<ui:define name="title">Application Gestion CV</ui:define>
+</ui:composition>
+
+</html>

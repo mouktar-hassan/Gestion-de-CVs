@@ -14,6 +14,7 @@ import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
+import gestionCvs.entities.Activity;
 import gestionCvs.entities.Person;
 
 @Stateless
@@ -37,12 +38,16 @@ public class PersonManagerImpl implements PersonManager{
 	@Override
 	@TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
 	public Person savePerson(Person p) {
-		if(p.getId()==null){
-			em.persist(p);
-		}else{
-			em.merge(p);
-		}
-		return p;
+		if( showPersonByEmail(p.getEmail()) == null ){
+			if(p.getId()==null){
+				em.persist(p);
+			}else{
+				em.merge(p);
+			}
+			return p;
+		}else {
+			return null;
+		}	
 	}
 
 	@Override
@@ -171,6 +176,25 @@ public class PersonManagerImpl implements PersonManager{
 			return null;
 		Person displayperson = (Person) query.getSingleResult();
 		return displayperson;
+	}
+
+	@Override
+	public List<Activity> showActivities(Person person) {
+        Query query = null;
+		
+		if (person.getId() != null) {
+			try {
+				query = em.createQuery("SELECT a FROM Activity a WHERE a.person.idPerson = :id")
+				.setParameter("id", person.getId());
+			} catch (Exception e) {
+			}
+			if (query != null) {
+				List<Activity> activities = query.getResultList();				
+				return activities;
+				
+			}
+		}
+		return null;
 	}
 
 	

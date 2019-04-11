@@ -5,6 +5,7 @@ import java.util.List;
 import javax.ejb.Local;
 import javax.persistence.NoResultException;
 
+import gestionCvs.entities.Activity;
 import gestionCvs.entities.Person;
 
 @Local
@@ -25,5 +26,6 @@ public interface PersonManager {
     Person showPerson(Person person);	
 	Person showPersonByEmail(String email);
 	List<Person> findMulticriteria(Person person) throws NoResultException;
+	List<Activity> showActivities(Person person);
 
 }

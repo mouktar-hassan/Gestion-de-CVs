@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:p="http://primefaces.org/ui">
+	
+
+<h:body>
+    <ui:composition template="/template/mylayoutConnected.xhtml">
+    	<ui:define name="title">CV Application</ui:define>
+		<ui:define name="content">
+		
+		<c:choose>
+			<c:when test="${not empty personSession}">
+				<div>
+		        	<h:form> 
+		        	<p:panel id="panel" header="Supprimer votre profil">
+		        	<p:panelGrid styleClass="companyHeaderGrid" columns="3" cellpadding="5">
+		        	<h:outputText for="firstname" value="En supprimant votre compte, vous supprimez votre profil.
+		        	 Certaines informations resteront visibles au public, 
+		        	 comme vos activités et personnes crées" />
+		        	<c:set var="personValidator" value="#{personController.personValidator}" />	
+								<p:commandButton action="#{personController.deleteProfil()}" value="Supprimer" ajax="false" icon="ui-icon-check" validateClient="true" update="msgs" />
+					</p:panelGrid> 		
+					</p:panel>
+					</h:form>
+				</div>
+			</c:when>
+			<c:otherwise>
+<!-- 				<c:redirect url="/consult.xhtml"/> -->
+				<f:event type="preRenderView" listener="profil" />
+			</c:otherwise>
+		</c:choose>	
+
+		</ui:define>
+		
+	</ui:composition>
+</h:body>
+</html>
+

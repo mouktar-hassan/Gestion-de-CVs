@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/template/mylayout.xhtml">
+        <ui:define name="content">
+            <h1>
+                <h:outputText value="Recherche" />
+            </h1>
+            
+            <h:form>
+				<p:panel id="panel" header="Chercher une persone par email">
+				<p:messages id="msgs" />
+				<h:panelGrid columns="3">
+                        <p:outputLabel for="email" value="Email:"/>
+                        <p:inputText id="email" value="#{personController.email}" label="email">
+                            <p:ajax update="email" />
+                        </p:inputText>
+                        <p:message for="email" display="tooltip" />                        
+                        
+                            <p:commandButton 
+							action="#{personController.findPersonByEmail()}" value="Rechercher" ajax="false"
+							icon="ui-icon-check" validateClient="true" update="msgs" />
+					
+				</h:panelGrid>
+				
+				</p:panel>
+				<br/>
+				<p:panel id="panel2" header="Chercher une persone par nom">
+				<p:messages id="msgs2" />
+				<h:panelGrid columns="3">
+                        <p:outputLabel for="name" value="Nom:"/>
+                        <p:inputText id="name" value="#{personController.name}" label="name">
+                            <p:ajax update="name" />
+                        </p:inputText>
+                        <p:message for="name" display="tooltip" />                        
+                        
+                            <p:commandButton 
+							action="#{personController.findPersonByName()}" value="Rechercher2" ajax="false"
+							icon="ui-icon-check" validateClient="true" update="msgs" />
+					
+				</h:panelGrid>
+				</p:panel>
+			</h:form>
+        </ui:define> 
+        
+          
+        
+        
+        
+        <ui:define name="title">Gestion de Cv</ui:define>
+        	
+			
+    </ui:composition>
+
+</html>

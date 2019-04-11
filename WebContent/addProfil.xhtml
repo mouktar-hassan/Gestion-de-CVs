@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/template/mylayoutConnected.xhtml">
+	<ui:define name="title">Ajouter un profil</ui:define>
+
+	<ui:define name="content">
+		<h:form>
+			<p:panel id="panel" header="Ajouter un profil">
+
+				<p:messages id="msgs" />
+
+				<h:panelGrid columns="3">
+
+					<p:outputLabel for="name" value="Nom:" />
+					<p:inputText id="name" value="#{personController.name}"
+						label="name" required="true">
+						<f:validateLength minimum="2" />
+						<p:ajax update="msgname" />
+					</p:inputText>
+					<p:message for="name" id="msgname" display="icon" />
+
+					<p:outputLabel for="firstname" value="Prénom:" />
+					<p:inputText id="firstname" value="#{personController.firstname}"
+						label="firstname" required="true">
+						<f:validateLength minimum="2" />
+						<p:ajax update="msgfirstname" />
+					</p:inputText>
+					<p:message for="firstname" id="msgfirstname" display="icon" />
+
+					<p:outputLabel for="email" value="Email:" />
+					<p:inputText id="email" value="#{personController.email}"
+						label="email" required="true">
+						<f:validateLength minimum="5" />
+						<p:ajax update="email" />
+					</p:inputText>
+					<p:message for="email" display="tooltip" />
+
+					<p:outputLabel for="website" value="Site web:" />
+					<p:inputText id="website" value="#{personController.website}"
+						label="website" required="true">
+						<f:validateLength minimum="3" />
+						<p:ajax update="msgwebsite" />
+					</p:inputText>
+					<p:message for="website" id="msgwebsite" display="icon" />
+
+					<p:outputLabel for="birthday" value="Date de naissance:" />
+					<p:calendar id="birthday" value="#{personController.birthday}"
+						pattern="dd-MM-yyyy" mask="true" label="birthday" required="true">
+						<f:validateLength minimum="2" />
+						<p:ajax update="msgbirthday" event="click" />
+					</p:calendar>
+					<p:message for="birthday" id="msgbirthday" display="icon" />
+
+					<p:outputLabel for="password" value="Mot de passe:" />
+					<p:password id="password" value="#{personController.password}"
+						match="passwordConfirmation" label="Mot de passe" feedback="true"
+						promptLabel="Saisir le mot de passe" weakLabel="Faible"
+						goodLabel="Moyen" strongLabel="Fort" required="true">
+						<f:validateLength minimum="2" />
+						<p:ajax update="msgpassword" />
+					</p:password>
+					<p:message for="password" id="msgpassword" display="icon" />
+
+					<p:outputLabel for="passwordConfirmation"
+						value="Confirmation de mot de passe:" />
+					<p:password id="passwordConfirmation"
+						value="#{personController.passwordConfirmation}"
+						label="Confirmation de mot de passe" feedback="true"
+						promptLabel="Saisir le mot de passe" weakLabel="Faible"
+						goodLabel="Moyen" strongLabel="Fort" required="true">
+						<f:validateLength minimum="2" />
+						<p:ajax update="msgpassword" />
+					</p:password>
+					<p:message for="passwordConfirmation" id="msgpasswordConfirmation"
+						display="icon" />
+					
+
+
+					<p:commandButton action="#{personController.save()}"
+						value="Ajouter" ajax="false" icon="ui-icon-check"
+						validateClient="true" update="msgs" />
+
+
+				</h:panelGrid>
+			</p:panel>
+		</h:form>
+	</ui:define>
+
+</ui:composition>
+
+
+
+</html>

@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:body>
+	<ui:composition template="/template/mylayout.xhtml">
+		<ui:define name="title">CV Application</ui:define>
+		<ui:define name="content">
+
+			<c:choose>
+				<c:when test="#{not empty personController.otherPerson.id}">
+
+					<h:form>
+
+						<p:panel header="Profil trouvé">
+							<p:panelGrid columns="2">
+								<h:outputText value="Nom:" />
+								<h:outputText value="#{personController.otherPerson.name}" />
+
+								<h:outputText value="Prénom:" />
+								<h:outputText value="#{personController.otherPerson.firstname}" />
+
+								<h:outputText value="e-mail:" />
+								<h:outputText value="#{personController.otherPerson.email}" />
+
+								<h:outputText value="Site Web:" />
+								<h:outputText value="#{personController.otherPerson.website}" />
+
+							</p:panelGrid>
+						</p:panel>
+
+						<!-- les Formations  -->
+						<p:panel header="Mes formations">
+
+							<c:forEach var="act" items="#{personController.activities}">
+								<c:choose>
+									<c:when test="#{act.nature == 'FORMATION'}">
+										<p:outputPanel>
+											<p:panelGrid columns="2" cellpadding="5">
+
+												<h:outputText value="Titre:" />
+												<h:outputText value="#{act.title}" />
+
+												<h:outputText value="Annee:" />
+												<h:outputText value="#{act.year}" />
+
+												<h:outputText value="Adresse web" />
+												<h:outputText value="#{act.webAdress}" />
+
+												<h:outputText value="Description:" />
+												<h:outputText value="#{act.description}" />
+
+											</p:panelGrid>
+										</p:outputPanel>
+									</c:when>
+								</c:choose>
+							</c:forEach>
+						</p:panel>
+
+
+						<!-- les expériences professionnelles  -->
+						<p:panel header="Expériences professionnelles">
+
+							<c:forEach var="act" items="#{personController.activities}">
+								<c:choose>
+									<c:when test="#{act.nature == 'EXPERIENCE_PROFESSIONNELLE'}">
+										<p:outputPanel>
+											<p:panelGrid columns="2" cellpadding="5">
+
+												<h:outputText value="Titre:" />
+												<h:outputText value="#{act.title}" />
+
+												<h:outputText value="Annee:" />
+												<h:outputText value="#{act.year}" />
+
+												<h:outputText value="Adresse web" />
+												<h:outputText value="#{act.webAdress}" />
+
+												<h:outputText value="Description:" />
+												<h:outputText value="#{act.description}" />
+
+											</p:panelGrid>
+										</p:outputPanel>
+									</c:when>
+								</c:choose>
+							</c:forEach>
+						</p:panel>
+
+						<!-- les autres types  -->
+						<p:panel header="Autres">
+
+							<c:forEach var="act" items="#{personController.activities}">
+								<c:choose>
+									<c:when test="#{act.nature == 'AUTRE'}">
+										<p:outputPanel>
+											<p:panelGrid columns="2" cellpadding="5">
+
+												<h:outputText value="Titre:" />
+												<h:outputText value="#{act.title}" />
+
+												<h:outputText value="Annee:" />
+												<h:outputText value="#{act.year}" />
+
+												<h:outputText value="Adresse web" />
+												<h:outputText value="#{act.webAdress}" />
+
+												<h:outputText value="Description:" />
+												<h:outputText value="#{act.description}" />
+
+											</p:panelGrid>
+										</p:outputPanel>
+									</c:when>
+								</c:choose>
+							</c:forEach>
+						</p:panel>
+
+
+
+					</h:form>
+
+				</c:when>
+				<c:otherwise>
+					<h:outputText value="Oops! Cette person n'existe pas" />
+				</c:otherwise>
+			</c:choose>
+
+
+
+		</ui:define>
+
+	</ui:composition>
+</h:body>
+</html>
+

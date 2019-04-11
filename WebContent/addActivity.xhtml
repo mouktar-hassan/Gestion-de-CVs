@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:body>
+    <ui:composition template="/template/mylayoutConnected.xhtml">
+    	<ui:define name="title">Gestion des CVs</ui:define>
+        <ui:define name="content">	
+        	<c:choose>
+				<c:when test="${not empty personSession}">
+					
+		            <h:form>
+		            	<p:panel id="panel" header="Ajouter une activité">
+		            		<c:set var="activity" value="#{personController.activityValidator}" />
+		            		
+		            		
+		            		<p:messages id="msgs" />
+		            		
+		            		<h:panelGrid columns="3">
+		            		
+		            			<p:outputLabel for="nature" value="Nature:" />
+		                        <p:selectOneMenu id="nature" value="#{activity.nature}">
+		                        	<f:selectItems value="#{personController.nature}" />
+		                        </p:selectOneMenu>
+		                        <p:message for="nature" />
+		            			
+		            			<p:outputLabel for="title" value="Titre:" />
+		                        <p:inputText id="title" value="#{activity.title}" label="title" required="true">
+		                            <f:validateLength minimum="10" />
+		                            <p:ajax update="msgtitle" event="keyup" />
+		                        </p:inputText>
+		                        <p:message for="title" id="msgtitle" display="icon" />
+		                        
+		                        <p:outputLabel for="year" value="Année:"/>
+		                        <p:calendar id="year" value="#{activity.year}" pattern="dd-MM-yyyy" mask="true" label="year" required="true">
+		                        	<f:validateLength minimum="8" />
+		                        	<p:ajax update="msgyear" event="click" />
+		                        </p:calendar>
+		                        <p:message for="year" id="msgyear" display="icon" />
+		                        
+		                        <p:outputLabel for="webAdress" value="Site web:"/>
+		                        <p:inputText id="webAdress" value="#{activity.webAdress}" label="webAdress" required="true">
+		                            <f:validateLength minimum="6" />
+		                            <p:ajax update="msgwebAdress" event="keyup" />
+		                        </p:inputText>
+		                        <p:message for="webAdress" id="msgwebAdress" display="icon" />
+		                        	
+		                        	
+		                        <p:outputLabel for="description" value="Description:"/>
+		                        <p:inputTextarea id="description" value="#{activity.description}" label="description" required="true" rows="6" cols="33" counter="display" maxlength="1000" counterTemplate="{0} caractères restants">
+		                        	<f:validateLength minimum="30"/>
+		                        	<p:ajax update="msgdescription" event="keyup" />
+		                        </p:inputTextarea>
+		                        <h:outputText id="display" />
+		                        <p:message for="description" id="msgdescription" display="icon" />
+		                        
+		                        
+		                        <p:commandButton 
+							     action="#{personController.addActivity()}" value="Ajouter" ajax="false"
+							     icon="ui-icon-check" validateClient="true" update="panel" />
+		            			
+		            		</h:panelGrid>
+		            		
+		            	</p:panel>
+		            </h:form>		
+					
+				</c:when>
+				<c:otherwise>
+					<f:event type="preRenderView" listener="accueil" />
+				</c:otherwise>
+		</c:choose>	
+
+
+		</ui:define>
+		
+	</ui:composition>
+</h:body>
+</html>
+

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition>
+	<h:form>
+		<p:megaMenu activeIndex="#{param.i}">
+		
+			<p:menuitem styleClass="affaires"  value="Accueil" url="accueilConnected.xhtml" icon="pi pi-star"> </p:menuitem>
+			
+			<p:menuitem styleClass="affaires"  value="Consultation" outcome="consultationConnected.xhtml" icon="pi pi-file"></p:menuitem>
+
+			<p:menuitem styleClass="affaires"  value="Recherche" outcome="rechercheConnected.xhtml" icon="pi pi-star"> </p:menuitem>
+			
+			<p:submenu styleClass="affaires"  label="Ajouter" icon="pi pi-star">
+				 <p:column>
+		            <p:submenu>
+		                <p:menuitem  styleClass="affaires"  value="Ajouter une activité" url="addActivity.xhtml"  />
+		                <p:menuitem  styleClass="affaires"   value="Ajouter un profil" url="addProfil.xhtml" />
+		            </p:submenu>
+		         </p:column>
+			</p:submenu>
+			
+
+			<p:menuitem styleClass="affaires"  value="Mon CV" outcome="myCvConsult.xhtml" icon="pi pi-briefcase"> </p:menuitem>
+
+			
+
+			<p:menuitem styleClass="affaires"  value="Acitivités" outcome="displayActivitiesConnected.xhtml" icon="pi pi-user">
+			</p:menuitem>
+
+			<p:menuitem styleClass="affaires"  value="A Propos" outcome="aproposConnected.xhtml" icon="pi pi-user">
+			</p:menuitem>
+			
+			<p:submenu styleClass="affaires"  label="Parametres compte"  icon="pi pi-briefcase">
+				 <p:column>
+		            <p:submenu>
+		                <p:menuitem styleClass="affaires"  value="Modifier mon profil" url="modifyProfil.xhtml" icon="pi pi-pencil" />
+		                <p:menuitem styleClass="affaires"  value="Supprimer mon profil" url="deleteProfil.xhtml" icon="pi pi-briefcase" />
+		            </p:submenu>
+		         </p:column>
+			</p:submenu>
+			
+			<p:menuitem styleClass="affaires"  value="Se Deconnecter" outcome="signin.xhtml" icon="pi pi-user">
+			</p:menuitem>
+		</p:megaMenu>
+
+
+	</h:form>
+</ui:composition>
+
+</html>

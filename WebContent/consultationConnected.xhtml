@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/template/mylayoutConnected.xhtml">
+        <ui:define name="content">
+             <ui:define name="title">Gestion de Cv</ui:define>
+            <h1>
+			<i><h:outputText value="Liste des Cvs récents" /></i>
+		</h1>
+			<h:form>
+				<p:dataTable var="person" value="#{personController.listPersons}"
+					paginator="true"
+					paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+					rowsPerPageTemplate="3,6,12" rows="3">
+					<f:facet name="header">
+            			Liste de personnes qui ont créés un CV
+        			</f:facet>
+					<p:column headerText="Prénom">
+						<h:outputText value="#{person.firstname}" />
+					</p:column>
+					<p:column headerText="Nom">
+						<h:outputText value="#{person.name}" />
+					</p:column>
+					<p:column style="width:200px;text-align: center">
+						<p:commandButton icon="ui-icon-search" value="Voir son CV" title="CV"
+							action="#{personController.seeCVConnected(person)}" />
+					</p:column>
+				</p:dataTable>
+			</h:form>
+        </ui:define>
+        <ui:define name="title">Gestion de Cv</ui:define>
+    </ui:composition>
+
+</html>

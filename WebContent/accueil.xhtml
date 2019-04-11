@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:p="http://primefaces.org/ui">
+    
+  
+   
+    <ui:composition template="/template/mylayout.xhtml"> 
+        <ui:define name="content">
+       
+       <h:form>
+       <!--  <p:commandButton action="#{printController.createPDF()}" value="Imprimer" ajax="false" icon="fa fa-print" onclick="this.form.target='_blank'" />  -->
+        
+    <p:growl id="msgs" showDetail="true" />  
+ 
+    <p:panel  styleClass="centered" id="toggleable" header="Gestion des CVs" toggleable="true" closable="true" toggleSpeed="500" closeSpeed="500" widgetVar="panel" style="margin-bottom:20px">
+ 
+        <p:ajax event="close" listener="#{panelView.onClose}" update="msgs" />
+        <p:ajax event="toggle" listener="#{panelView.onToggle}" update="msgs" />
+ 
+         <h:panelGrid columns="2" cellpadding="10">
+            <p:graphicImage name="demo/images/godfather/godfather2.jpg" />
+            <h:outputText value="Ceci est une application pour la gestion des Cvs en ligne. Certains fonctionnalités requiets une authentification.
+            Veuillez vous inscrire pour pouvoir avoir accès à l'ensemble des fonctionnalités de l'application en cliquant sur le lien Inscription au menu ci-dessus. " />
+        </h:panelGrid>
+ 
+        <f:facet name="options">
+            <p:menu>
+                <p:submenu label="Settings">
+                    <p:menuitem value="Toggle" url="#" icon="pi pi-clone" onclick="PF('panel').toggle()" />
+                    <p:menuitem value="Remove" url="#" icon="pi pi-times" onclick="PF('panel').close()" />
+                </p:submenu>
+            </p:menu>
+        </f:facet>
+    </p:panel>
+ 
+</h:form>
+       
+        </ui:define> 
+        
+    </ui:composition>
+
+</html>

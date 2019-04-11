@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/template/mylayoutConnected.xhtml">
+        <ui:define name="content">
+             <ui:define name="title">Gestion de Cv</ui:define>
+            <h1>
+			<i><h:outputText value="Liste des activités" /></i>
+		</h1>
+			<h:form>
+				<p:dataTable var="act" value="#{personController.activities}"
+					paginator="true"
+					paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+					rowsPerPageTemplate="3,6,12" rows="3">
+					<f:facet name="header">
+            			Liste des activités qui sont créés
+        			</f:facet>
+					<p:column headerText="Année">
+						<h:outputText value="#{act.year}" />
+					</p:column>
+					<p:column headerText="Nom">
+						<h:outputText value="#{act.nature}" />
+					</p:column>
+					<p:column headerText="Descritpion">
+						<h:outputText value="#{act.description}" />
+					</p:column>
+				</p:dataTable>
+			</h:form>
+        </ui:define>
+        <ui:define name="title">Gestion de Cv</ui:define>
+    </ui:composition>
+
+</html>

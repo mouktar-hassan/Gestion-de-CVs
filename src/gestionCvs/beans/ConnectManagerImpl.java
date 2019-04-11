@@ -91,7 +91,7 @@ public class ConnectManagerImpl implements ConnectManager{
 		Query query = null;
 		if (person.getId() != null) {
 			try {
-				query = em.createQuery("SELECT a FROM Activity a WHERE a.person.idPerson = :id")
+				query = em.createQuery("SELECT a FROM Activity a WHERE a.person.id = :id")
 						.setParameter("id", person.getId());
 			} catch (Exception e) {
 			}

@@ -10,43 +10,49 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinTable;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 
+import org.apache.openjpa.persistence.jdbc.Unique;
+
 @Entity
 public class Person {
+
+	@Id()
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Integer id;
 	
-	@Id() @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
 	@Column
 	@NotNull
 	private String name;
+	
 	@Column
 	@NotNull
 	private String firstname;
+	
+	@Unique
 	@Column
 	@NotNull
 	private String email;
+	
+	@Unique
 	@Column
-	
-	
 	String website;
+	
 	@Column
 	@NotNull
 	@Temporal(TemporalType.DATE)
 	private Date birthday;
+	
 	@Column
 	@NotNull
 	private String password;
-	
+
 	@OneToMany(mappedBy = "person", cascade = { CascadeType.MERGE, CascadeType.REMOVE }, fetch = FetchType.LAZY)
-	//@JoinTable(name = "activity")
+	// @JoinTable(name = "activity")
 	private List<Activity> activities;
-	
-	
 
 	public Integer getId() {
 		return id;
@@ -111,11 +117,5 @@ public class Person {
 	public void setActivities(List<Activity> activities) {
 		this.activities = activities;
 	}
-	
-	
-	
-	
-	
-	
 
 }
